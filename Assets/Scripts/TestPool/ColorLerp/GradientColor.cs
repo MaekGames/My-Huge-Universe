@@ -21,6 +21,11 @@ public class GradientColor : MonoBehaviour
     {
         _currentTime = currentTime;
     }
+
+    void Update()
+    {
+        UpdateGradient();
+    }
     public void UpdateGradient()
     {
         // update the time

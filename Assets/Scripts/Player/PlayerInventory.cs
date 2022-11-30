@@ -10,6 +10,7 @@ public class PlayerInventory : MonoBehaviour
     //[SerializeField] int _greenSphere;
     [SerializeField] public List<int> spheres;
     [SerializeField] public List<GameObject> spherePrefabs;
+    [SerializeField] Vector2 MinMaxSpawnRadius;
     public bool allPointsFealed = false;
     //public int Spheres { get => spheres[id]; set => _redSphere = value; }
     private void Start()
@@ -29,7 +30,9 @@ public class PlayerInventory : MonoBehaviour
 
     private void DropFlow(int dropId)
     {
-        PoolManager.SpawnObject(spherePrefabs[dropId], spawnPoint[0].position, Quaternion.identity); //Random.Range(0, spawnPoint.Count)
+        PoolManager.SpawnObject(spherePrefabs[dropId], spawnPoint[0].position + new Vector3(Random.Range(MinMaxSpawnRadius.x, MinMaxSpawnRadius.y),
+                                                                                            Random.Range(MinMaxSpawnRadius.x, MinMaxSpawnRadius.y),
+                                                                                            Random.Range(MinMaxSpawnRadius.x, MinMaxSpawnRadius.y)), Quaternion.identity);
 
     }
 

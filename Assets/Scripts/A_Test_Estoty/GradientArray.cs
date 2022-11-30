@@ -27,7 +27,7 @@ public class GradientArray : MonoBehaviour
         CreateSphereCube();
     }
     /// <summary>
-    /// Create Sphere Cube adjust x_1 y_1 z_1 values for spere size
+    /// Create Sphere Cube adjust x_1 y_1 z_1 values for sphere size
     /// gradientStep for gradient change speed
     /// </summary>
     public void CreateSphereCube()
@@ -43,9 +43,7 @@ public class GradientArray : MonoBehaviour
                 {
                     z += 15;
                     spheres[i, j, k] = Instantiate(spherePrefab, new Vector3(x, y, z), Quaternion.identity) as GameObject;
-                    //spheres[i, j, k].GetComponent<GradientObject>().CurrentTime = createTime;
                     timeArray[i, j, k] = createTime;
-                    //spheres[i, j, k].GetComponent<GradientObject>().SetTime(createTime);
                 }
                 z = 0;
             }
@@ -54,7 +52,6 @@ public class GradientArray : MonoBehaviour
         }
         created = true;
     }
-    // Update is called once per frame
     void Update()
     {
         if (created)
@@ -77,6 +74,7 @@ public class GradientArray : MonoBehaviour
     /// passed gradient object
     public void UpdateGradient(GameObject spher, int i,int j, int k )
     {
+        //set time
         _currentTime = timeArray[i, j, k];
         timeArray[i, j, k] = Mathf.Repeat(_currentTime + Time.deltaTime, duration);
         // retrieve and apply the colour

@@ -7,7 +7,7 @@ public class FillWithObjects : MonoBehaviour
     public List<int> absorbentCountNeed;
     public List<int> absorbed;
     //public int redvalue;
-    [SerializeField] int redvalueAbsorbed;
+    //int redvalueAbsorbed;
     //public int bluevalue;
     //[SerializeField] int bluevalueAbsorbed;
     PlayerInventory _playerInventory;

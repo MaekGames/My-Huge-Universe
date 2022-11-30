@@ -90,10 +90,11 @@ public class PlayerController : MonoBehaviour
         else playerAnimator.SetBool("Run", false);
         transform.Rotate(0, x, 0);
         transform.Translate(0, 0, z);
-#endif 
+#endif
+#if UNITY_ANDROID
         //Vector3 direction = Vector3.forward * fixedJoystick.Vertical + Vector3.right * fixedJoystick.Horizontal;
         //rig.AddForce(direction * speed * Time.fixedDeltaTime, ForceMode.VelocityChange);
-        Debug.Log(target.position - transform.position);
+        //Debug.Log(target.position - transform.position);
         var x_1 = fixedJoystick.Horizontal * Time.deltaTime * 150.0f;
         var z_1 = fixedJoystick.Vertical * Time.deltaTime * 3.0f;
         if (fixedJoystick.Horizontal !=0 || fixedJoystick.Vertical !=0 )
@@ -104,8 +105,8 @@ public class PlayerController : MonoBehaviour
         else  playerAnimator.SetBool("Run", false);
         transform.Rotate(0, x_1, 0);
         transform.Translate(0, 0, z_1);
-
     }
+#endif
 
     private void OnCollisionEnter(Collision collision)
     {
