@@ -5,9 +5,6 @@ using UnityEngine;
 public class PlayerInventory : MonoBehaviour
 {
     public List<Transform> spawnPoint;
-    //[SerializeField] int _blueSphere;
-    //[SerializeField] int _redSphere;
-    //[SerializeField] int _greenSphere;
     [SerializeField] public List<int> spheres;
     [SerializeField] public List<GameObject> spherePrefabs;
     [SerializeField] Vector2 MinMaxSpawnRadius;
@@ -33,7 +30,5 @@ public class PlayerInventory : MonoBehaviour
         PoolManager.SpawnObject(spherePrefabs[dropId], spawnPoint[0].position + new Vector3(Random.Range(MinMaxSpawnRadius.x, MinMaxSpawnRadius.y),
                                                                                             Random.Range(MinMaxSpawnRadius.x, MinMaxSpawnRadius.y),
                                                                                             Random.Range(MinMaxSpawnRadius.x, MinMaxSpawnRadius.y)), Quaternion.identity);
-
     }
-
 }

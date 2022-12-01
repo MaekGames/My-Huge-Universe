@@ -1,14 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class SwitchCameras : MonoBehaviour
 {
-    public GameObject camera_1;
-    public GameObject camera_2;
+    [SerializeField] CinemachineVirtualCamera camera_1;
     public void SwitchCamera()
     {
-        if (camera_1.activeSelf) camera_1.SetActive(false);
-        else camera_1.SetActive(true);
+        if (camera_1.m_Priority >= 9) camera_1.m_Priority = 8;
+        else camera_1.m_Priority = 10;
     }
 }

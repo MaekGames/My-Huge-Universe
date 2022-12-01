@@ -10,10 +10,12 @@ public class PlayerController : MonoBehaviour
     private bool canJump;
     public Animator playerAnimator;
     public Transform target;
+    PlayerInventory playerInventory = null;
 
     void Start()
     {
         Ini();
+        playerInventory = GetComponent<PlayerInventory>();
     }
 
      void Update()
@@ -91,22 +93,25 @@ public class PlayerController : MonoBehaviour
         transform.Rotate(0, x, 0);
         transform.Translate(0, 0, z);
 #endif
-#if UNITY_ANDROID
+#if ANDROID
         //Vector3 direction = Vector3.forward * fixedJoystick.Vertical + Vector3.right * fixedJoystick.Horizontal;
         //rig.AddForce(direction * speed * Time.fixedDeltaTime, ForceMode.VelocityChange);
         //Debug.Log(target.position - transform.position);
-        var x_1 = fixedJoystick.Horizontal * Time.deltaTime * 150.0f;
-        var z_1 = fixedJoystick.Vertical * Time.deltaTime * 3.0f;
-        if (fixedJoystick.Horizontal !=0 || fixedJoystick.Vertical !=0 )
-        {
-            playerAnimator.SetBool("Run", true);
-            Vector3 pos = new Vector3(rig.gameObject.transform.position.x, rig.gameObject.transform.position.y, rig.gameObject.transform.position.z);
-        }
-        else  playerAnimator.SetBool("Run", false);
-        transform.Rotate(0, x_1, 0);
-        transform.Translate(0, 0, z_1);
-    }
+        //if (fixedJoystick.Horizontal != 0 || fixedJoystick.Vertical != 0)
+        //{
+            var x_1 = fixedJoystick.Horizontal * Time.deltaTime * 150.0f;
+            var z_1 = fixedJoystick.Vertical * Time.deltaTime * 3.0f;
+            if (fixedJoystick.Horizontal != 0 || fixedJoystick.Vertical != 0)
+            {
+                playerAnimator.SetBool("Run", true);
+                Vector3 pos = new Vector3(rig.gameObject.transform.position.x, rig.gameObject.transform.position.y, rig.gameObject.transform.position.z);
+            }
+            else playerAnimator.SetBool("Run", false);
+            transform.Rotate(0, x_1, 0);
+            transform.Translate(0, 0, z_1);
+        //}
 #endif
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -115,5 +120,11 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Grounded");
             playerAnimator.SetBool("Jump", false);
         }
+
+        /*if(collision.gameObject.tag.Equals("Absorb"))
+        {
+            Debug.Log("Absorb");
+            playerInventory.AddSphere(1, 1);
+        }*/
     }
 }

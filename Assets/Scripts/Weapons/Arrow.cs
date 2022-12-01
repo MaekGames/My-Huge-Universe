@@ -16,6 +16,7 @@ public class Arrow : MonoBehaviour
     public Transform particleSpawn;
     private Transform particleSpawnRotation;
 
+    public Vector3 dir;
     public Transform target;
     Vector3 targetPos;
 
@@ -37,7 +38,8 @@ public class Arrow : MonoBehaviour
         {
             //transform.LookAt(target.position);
             //transform.position = Vector3.MoveTowards(transform.position, targetPos,  Time.deltaTime * speed);
-            transform.Translate(Vector3.forward * Time.deltaTime * speed);
+            //transform.Translate(Vector3.forward * Time.deltaTime * speed);
+            gameObject.GetComponent<Rigidbody>().AddForce(target.position, ForceMode.Impulse);
         }
         else
         {
@@ -68,14 +70,14 @@ public class Arrow : MonoBehaviour
         }
         else
         {
-            if (other.CompareTag("Player"))
+            /*if (other.CompareTag("Player"))
             {
                 other.GetComponent<MyPlayerController>().PlayerDead();
                 //Debug.Log("Player");
                 Destroy(_collider);
                 _renderer.enabled = false;
                 Invoke("DestroyArrow", destroyWait);
-            }
+            }*/
         }
     }
     void DestroyArrow()

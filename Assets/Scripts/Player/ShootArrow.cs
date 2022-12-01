@@ -38,11 +38,11 @@ public class ShootArrow : MonoBehaviour
 
     void Update()
     {
-        /*if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
             enemy = GameObject.FindGameObjectWithTag("Enemy");
             if(enemy != null && arrow != null) StartCoroutine(StartShoot(enemy.transform));
-        }*/
+        }
     }
     private void FixedUpdate()
     {
@@ -71,8 +71,6 @@ public class ShootArrow : MonoBehaviour
         {
             Debug.DrawRay(startrayPoint.position, transform.TransformDirection(Vector3.forward) * rayLength, Color.blue);
         }
-
-
     }
 
     IEnumerator StartShoot(Transform hitObj)
@@ -87,7 +85,9 @@ public class ShootArrow : MonoBehaviour
         //    return;
 
         animator.SetTrigger("Shoot");
-        GameObject arr = Instantiate(arrow, shootArrowPoint.position, arrow.transform.localRotation);
+        //GameObject arr = Instantiate(arrow, shootArrowPoint.position, arrow.transform.localRotation);
+        GameObject arr = Instantiate(arrow, shootArrowPoint.position, Quaternion.Euler(0,0,0));
+        //arr.GetComponent<Arrow>().dir = transform.position.LookAt(shootArrowPoint.position);
         arr.GetComponent<Arrow>().target = hitObj;
         StartCoroutine(NextShootArrowWait());
     }

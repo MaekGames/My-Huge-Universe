@@ -6,7 +6,7 @@ public class ObjectMovingLogic : MonoBehaviour
 {
     private float cycle; // This variable increases with time and allows the sine to produce numbers between -1 and 1.
     private Vector3 basePosition; // This variable maintains the location of the object without applying sine changes
-    [SerializeField] Transform target_2;
+    public Transform target_2 = null;
     [SerializeField] Vector2 MinMaxWaveSpeed;
     [SerializeField][Range(0.5f, 5f)] private float waveSpeed = 1f; // Higher make the wave faster
     [SerializeField] Vector2 MinMaxBonusHeight;
@@ -99,6 +99,11 @@ public class ObjectMovingLogic : MonoBehaviour
         {
             Finish();
         }
+        /*if (other.gameObject.tag.Equals("Player"))
+        {
+            other.GetComponent<PlayerInventory>().AddSphere(1,1);
+            Finish();
+        }*/
     }
     public void Finish()
     {

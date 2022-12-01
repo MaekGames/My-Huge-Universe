@@ -10,6 +10,7 @@ TagManager:
   - Earth
   - Enemy
   - Rocket
+  - Absorb
   layers:
   - Default
   - TransparentFX

@@ -6,17 +6,14 @@ public class FillWithObjects : MonoBehaviour
 {
     public List<int> absorbentCountNeed;
     public List<int> absorbed;
-    //public int redvalue;
-    //int redvalueAbsorbed;
-    //public int bluevalue;
-    //[SerializeField] int bluevalueAbsorbed;
     PlayerInventory _playerInventory;
+    [SerializeField] float timeToNextObj;
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag.Equals("Player")){
             _playerInventory = other.gameObject.GetComponent<PlayerInventory>();
             for(int i = 0; i < absorbentCountNeed.Count; i++)
-                StartCoroutine(StartAbsorbing(_playerInventory.spheres[i], i, 0.0f));
+                StartCoroutine(StartAbsorbing(_playerInventory.spheres[i], i, timeToNextObj));
             if (Absorbed()) { OpenLocation();}
         }
     }
@@ -40,7 +37,7 @@ public class FillWithObjects : MonoBehaviour
         while (palyerObj > 0)
         {
             //if (absorbentCountNeed[absorbId] <= absorbed[absorbId]) break;
-            yield return 1.5f + timeoffset;
+            yield return timeoffset;
             palyerObj--;
             _playerInventory.RemoveSphere(1, absorbId);
             absorbed[absorbId]++;
